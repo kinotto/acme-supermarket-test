@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import IdeaTile from './IdeaTile';
+import ProductTile from './ProductTile';
 import PropTypes from 'prop-types';
 import {
   FetchProductsRequest
@@ -13,7 +13,7 @@ class IdeaList extends Component {
   render() {
     return (
       <div>
-        <IdeaTile/>
+        <ProductTile/>
       </div>
     );
   }

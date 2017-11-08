@@ -11,7 +11,7 @@ export default class Mongo {
      * populate mongo db with some mock data
      */
     static populateDB(){
-        populateDB(Mongo.db);
+        //populateDB(Mongo.db);
     }
 
     /**
