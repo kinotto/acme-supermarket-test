@@ -1,0 +1,8 @@
+{
+    "server": {
+        "PORT": 9002
+    },
+    "mongo": {
+        "uri": "mongodb://heroku_5hqxr481:fk59g4h5ov4p7djvipdk8n3gkc@ds249565.mlab.com:49565/heroku_5hqxr481"
+    }
+}
