@@ -3,12 +3,12 @@ import {connect} from 'react-redux';
 import IdeaTile from './IdeaTile';
 import PropTypes from 'prop-types';
 import {
-  FetchIdeasRequest
+  FetchProductsRequest
 } from '../../actions';
 
 class IdeaList extends Component {
   componentWillMount() {
-    this.props.FetchIdeasRequest();
+    this.props.FetchProductsRequest();
   }
   render() {
     return (
@@ -20,15 +20,15 @@ class IdeaList extends Component {
 }
 
 IdeaList.propTypes = {
-  'ideas': PropTypes.object,
-  'FetchIdeasRequest': PropTypes.func
+  'products': PropTypes.object,
+  'FetchProductsRequest': PropTypes.func
 };
 
 const mapStateToProps = state => {
   return {
-    'ideas': state.get('ideas')
+    'ideas': state.get('products')
   };
 };
 export default connect(mapStateToProps, {
-  FetchIdeasRequest
+  FetchProductsRequest
 })(IdeaList);

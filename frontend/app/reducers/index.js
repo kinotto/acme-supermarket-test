@@ -1,6 +1,6 @@
 import {combineReducers} from 'redux-immutable';
-import {ideas} from './ideas';
+import {products} from './products';
 
 export const rootReducer = combineReducers({
-  ideas
+  products
 });

@@ -1,5 +1,5 @@
 import {combineEpics} from 'redux-observable';
-import {ideaEpic} from './ideaEpic';
+import {productEpic} from './productEpic';
 
 /*
 entry point for redux-observable
@@ -9,5 +9,5 @@ https://redux-observable.js.org/docs/basics/Epics.html
 */
 
 export const rootEpic = combineEpics(
-  ...ideaEpic
+  ...productEpic
 );
