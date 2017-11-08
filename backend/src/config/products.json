@@ -1,0 +1,17 @@
+[
+    {
+        "productCode": "FR1",
+        "name": "Fruit tea",
+        "price": 311
+    },
+    {
+        "productCode": "SR1",
+        "name": "Strawberries",
+        "price": 500
+    },
+    {
+        "productCode": "CF1",
+        "name": "Coffee",
+        "price": 1123
+    }
+]

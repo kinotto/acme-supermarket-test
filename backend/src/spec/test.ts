@@ -1,6 +1,6 @@
 import {expect} from 'chai';
 import {} from "mocha";
-import {Idea} from '../storage/model/idea';
+import {Product} from '../storage/model/product';
 import Mongo from '../storage/mongo';
 import * as mongoose from 'mongoose';
 
@@ -12,14 +12,13 @@ describe('test on mock data', () => {
     })
 
     it('should return some mock data', (done) => {
-        Idea.find({}, (err, resp) => {
+        Product.find({}, (err, resp) => {
             console.log(resp.length && resp[0]);
             if(err){
                 done(err);
             }
             done();
         })
-        //expect(true).to.be.true;
     })
 
     afterEach(() => {
