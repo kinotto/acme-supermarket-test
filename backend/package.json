@@ -1,7 +1,7 @@
 {
-  "name": "node-typescript-webpack-starter",
+  "name": "arcadia_backend",
   "version": "1.0.0",
-  "description": "crowdcube backend",
+  "description": "arcadia_backend",
   "author": "karim",
   "main": "./src/index",
   "scripts": {

@@ -3,7 +3,8 @@ import {connect} from 'react-redux';
 import ProductTile from './ProductTile';
 import PropTypes from 'prop-types';
 import {
-  FetchProductsRequest
+  FetchProductsRequest,
+  AddToBasketRequest
 } from '../../actions';
 
 class IdeaList extends Component {
@@ -12,8 +13,18 @@ class IdeaList extends Component {
   }
   render() {
     return (
-      <div>
-        <ProductTile/>
+      <div className="productList">
+        <h2>Product list </h2>
+        {
+          this.props.products.map(
+            product =>
+              <ProductTile
+                key={product.productCode}
+                product={product}
+                addToBasket={this.props.AddToBasketRequest}
+              />
+          )
+        }
       </div>
     );
   }
@@ -21,14 +32,16 @@ class IdeaList extends Component {
 
 IdeaList.propTypes = {
   'products': PropTypes.object,
-  'FetchProductsRequest': PropTypes.func
+  'FetchProductsRequest': PropTypes.func,
+  'AddToBasketRequest': PropTypes.func
 };
 
 const mapStateToProps = state => {
   return {
-    'ideas': state.get('products')
+    'products': state.get('products')
   };
 };
 export default connect(mapStateToProps, {
-  FetchProductsRequest
+  FetchProductsRequest,
+  AddToBasketRequest
 })(IdeaList);

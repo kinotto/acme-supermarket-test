@@ -8,10 +8,10 @@ const router = express.Router();
  * add an element to the basket
  */
 router.post('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if(!req.body.item){
+    if(!req.body.productCode){
         return next(new Error('no item provided'));
     }
-    let {item} = req.body;
+    let item = req.body;
 
     //HERE i use mongoose with plain callbacks
     Product.findOne({productCode: item.productCode}, (err: mongoose.Error, prod_item: any) => {
@@ -23,9 +23,10 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
             return next(new Error('item not found'));
         }
         item = {
-            ...item, 
+            productCode: prod_item.productCode, 
             name: prod_item.name, 
-            price: prod_item.price
+            price: prod_item.price,
+            quantity: item.quantity || 1
         }; 
 
         Basket.findOneAndUpdate(
@@ -67,12 +68,12 @@ router.get('/', (req: express.Request, res: express.Response, next: express.Next
  *  delete a single basket item or the whole basket
  */
 router.delete('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    if(!req.body.item){
+    if(!req.body.productCode){
         return next(new Error('no item provided'));
     }
 
     //could be a single product or the whole cart
-    let toRemove = req.body.item.productCode ? {productCode: req.body.item.productCode}: {}
+    let toRemove = req.body.productCode ? {productCode: req.body.productCode}: {}
     
     //mongoose with promises
     Basket.remove(toRemove)

@@ -12,9 +12,9 @@ const fetchProducts = action$ => {
   return action$
     .ofType(FETCH_PRODUCTS_REQUEST)
     .switchMap(() => {
-      return ajax({'url': API.FETCH_PRODUCTS, 'crossDomain': true})
+      return ajax({'url': API.FETCH_PRODUCTS})
         .map(resp => {
-          return FetchProductsResponse(resp);
+          return FetchProductsResponse(resp.response);
         });
     });
 };

@@ -1,0 +1,33 @@
+.basket{
+  width: 30%;
+}
+.basketTile{
+  display: flex;
+  justify-content: space-around;
+  border: 1px solid black;
+  padding: 20px;
+  border-radius: 2px;
+  &__name{
+
+  }
+  &__price{
+
+  }
+  &__quantity{
+
+  }
+  &__remove{
+    display: flex;
+    cursor: pointer;
+    img{
+      width: 20px;
+      height: 20px
+    }
+  }
+
+  //media query for mobile
+  @media screen and (max-width: 1000px){
+    flex-direction: column;
+    align-items: center;
+  }
+}
