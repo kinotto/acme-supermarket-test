@@ -13,6 +13,7 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
     }
     let {item} = req.body;
 
+    //HERE i use mongoose with plain callbacks
     Product.findOne({productCode: item.productCode}, (err: mongoose.Error, prod_item: any) => {
 
         if(err){
@@ -35,7 +36,13 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
                 if(err){
                     return next(err);
                 }
-                res.status(200).json(item);
+                fetchAllBasket()
+                .then(items => {
+                    res.status(200).json(items);
+                })
+                .catch((err: mongoose.Error) => {
+                    next(err);
+                })
             }
         )
     })
@@ -46,27 +53,15 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
  * get the whole basket
  */
 router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    //a different approach based on Promises
-    let basketItems: any;
-    Basket.find({})
-    .then((_basketItems: any) => {
-        basketItems = _basketItems;
-        let productCodes = basketItems.map((basket_item:any) => basket_item.productCode);
-        return Product.find({ productCode: {
-            $in: productCodes
-        }})
-    })
-    .then((items: any) => {
-        let itemsAndQuantity = items.map((item: any) => {
-            let bItem = basketItems.find((bItem:any) => bItem.productCode === item.productCode);
-            return {...item.toObject(), quantity: bItem.quantity || 1};
-        })
-        res.status(200).json(itemsAndQuantity);
+    fetchAllBasket()
+    .then(items => {
+        res.status(200).json(items);
     })
     .catch((err: mongoose.Error) => {
         next(err);
     })
 })
+
 
 /**
  *  delete a single basket item or the whole basket
@@ -75,19 +70,49 @@ router.delete('/', (req: express.Request, res: express.Response, next: express.N
     if(!req.body.item){
         return next(new Error('no item provided'));
     }
-    if(!req.body.item.productCode){
-        return next(new Error('no productCode provided'));
-    }
+
+    //could be a single product or the whole cart
+    let toRemove = req.body.item.productCode ? {productCode: req.body.item.productCode}: {}
     
-    //again mongoose with promises
-    Basket.remove({productCode: req.body.item.productCode})
-    .then((resp: any) => {
-        res.status(200).json(resp);
+    //mongoose with promises
+    Basket.remove(toRemove)
+    .then(resp => {
+        return fetchAllBasket();
+    })
+    .then(items => {
+        res.status(200).json(items);
     })
     .catch((err: mongoose.Error) => {
         next(err);
     })
 })
+
+
+const fetchAllBasket = () => {
+    return new Promise((resolve: any, reject: any) => {
+        //mongoose and Promises
+        let basketItems: any;
+        Basket.find({})
+        .then((_basketItems: any) => {
+            basketItems = _basketItems;
+            let productCodes = basketItems.map((basket_item:any) => basket_item.productCode);
+            return Product.find({ productCode: {
+                $in: productCodes
+            }})
+        })
+        .then((items: any) => {
+            let itemsAndQuantity = items.map((item: any) => {
+                let bItem = basketItems.find((bItem:any) => bItem.productCode === item.productCode);
+                return {...item.toObject(), quantity: bItem.quantity || 1};
+            })
+            resolve(itemsAndQuantity);
+        })
+        .catch((err: mongoose.Error) => {
+            reject(err);
+        })
+    })
+        
+}
 
 
 module.exports = router;
