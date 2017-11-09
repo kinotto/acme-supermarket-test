@@ -9,6 +9,7 @@
   border-radius: 2px;
   &__name{
     display: flex;
+    flex: 2;
     flex-direction: column;
     img{
       width: 50px;
@@ -16,13 +17,14 @@
     }
   }
   &__price{
-
+    flex: 1;
   }
   &__quantity{
-
+    flex: 1;
   }
   &__remove{
     display: flex;
+    flex: 1;
     cursor: pointer;
     img{
       width: 20px;
@@ -30,9 +32,4 @@
     }
   }
 
-  //media query for mobile
-  @media screen and (max-width: 1000px){
-    flex-direction: column;
-    align-items: center;
-  }
 }

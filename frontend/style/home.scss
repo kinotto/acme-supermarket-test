@@ -2,5 +2,16 @@
   .container{
     display: flex;
     justify-content: space-around;
+
+    //media query for mobile
+    @media screen and (max-width: 1000px){
+      flex-direction: column;
+      .productList{
+        width: 80%;
+      }
+      .basket{
+        width: 80%;
+      }
+    }
   }
 }
