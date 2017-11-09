@@ -8,8 +8,8 @@ let server = Server.getInstance();
 Mongo.connect();
 Mongo.populateDB();
 
-server.use('/api', VerifyUser, require('./routes/apiRoutes'));
-
+server.use('/api/products', VerifyUser, require('./routes/productsRoutes'));
+server.use('/api/basket', VerifyUser, require('./routes/basketRoutes'));
 
 
 //generic error handler
