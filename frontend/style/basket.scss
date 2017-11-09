@@ -8,7 +8,12 @@
   padding: 20px;
   border-radius: 2px;
   &__name{
-
+    display: flex;
+    flex-direction: column;
+    img{
+      width: 50px;
+      height: 20px;
+    }
   }
   &__price{
 

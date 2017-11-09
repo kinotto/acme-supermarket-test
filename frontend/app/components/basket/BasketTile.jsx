@@ -24,6 +24,11 @@ class BasketTile extends Component {
         }}>
         <div className="basketTile__name">
           {item.name}
+          {
+            item.promotion
+              ? <img src="../../../images/promo.png" />
+              : ''
+          }
         </div>
         <div className="basketTile__price">
           {(item.price / 100).toFixed(2) } £

@@ -3,17 +3,20 @@ import PropTypes from 'prop-types';
 
 
 class ProductTile extends Component {
-  isNumber(n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+  constructor(props) {
+    super(props);
+    this.state = {
+      'quantity': 1
+    };
   }
-
-  changeQuantity(evt, product) {
-    if (this.isNumber(evt.target.value) || evt.target.value === '') {
-      product.quantity = evt.target.value;
-      this.setState({});
+  changeQuantity(product, isAdd) {
+    if (isAdd) {
+      product.quantity = (product.quantity || 0) + 1;
+    } else if (product.quantity > 1) {
+      product.quantity = (product.quantity || 0) - 1;
     }
+    this.setState({'quantity': product.quantity});
   }
-
   render() {
     let {product, addToBasket} = this.props;
 
@@ -25,11 +28,15 @@ class ProductTile extends Component {
         <div className="productTile__price">
           {(product.price / 100).toFixed(2) } £
         </div>
-        <div className="productTile__input">
-          <input
-            type="text"
-            value={product.quantity || 1}
-            onChange={e => this.changeQuantity(e, product)}
+        <div className="productTile__quantity">
+          <img
+            src="../../../images/minus.png"
+            onClick={ () => this.changeQuantity(product, false)}
+          />
+          <span>{this.state.quantity}</span>
+          <img
+            src="../../../images/plus.ico"
+            onClick={ () => this.changeQuantity(product, true)}
           />
         </div>
         <div
