@@ -24,6 +24,15 @@ class Basket extends Component {
             />
           )
         }
+        <hr/>
+        <h3>
+          Total:
+          { ' ' +
+            this.props.items.reduce(
+              (sum, item) => +(sum + (item.price / 100) * item.quantity).toFixed(2), 0
+            )
+          } £
+        </h3>
       </div>
 
     );
