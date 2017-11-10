@@ -3,14 +3,12 @@ implementation of the backend with Typescript and NodeJS.
 the backend interacts with a persistence layer (mongoDB) on heroku cloud.
 
 ## install
-first download the dependencies
-npm install or yarn install
 
-to run the project:
-npm run start
+- npm install or yarn install
 
-to run the test:
-npm run test
+- npm run start
+
+- npm run test (to run the test)
 
 ## storage
 there's a first phase that populate the remote db with the products on our supermarket (in the example we have only tree products), available for simplicity in the file products.json.
