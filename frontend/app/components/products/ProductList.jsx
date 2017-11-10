@@ -7,7 +7,7 @@ import {
   AddToBasketRequest
 } from '../../actions';
 
-class IdeaList extends Component {
+class ProductList extends Component {
   componentWillMount() {
     this.props.FetchProductsRequest();
   }
@@ -30,7 +30,7 @@ class IdeaList extends Component {
   }
 }
 
-IdeaList.propTypes = {
+ProductList.propTypes = {
   'products': PropTypes.object,
   'FetchProductsRequest': PropTypes.func,
   'AddToBasketRequest': PropTypes.func
@@ -44,4 +44,4 @@ const mapStateToProps = state => {
 export default connect(mapStateToProps, {
   FetchProductsRequest,
   AddToBasketRequest
-})(IdeaList);
+})(ProductList);

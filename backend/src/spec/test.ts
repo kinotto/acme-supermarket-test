@@ -6,21 +6,37 @@ import * as mongoose from 'mongoose';
 
 describe('test on mock data', () => {
 
-    beforeEach((done) => {
+    //before all
+    before((done) => {
         let connection = Mongo.connect();
         connection.once('open', () => done());
     })
 
     it('should return some mock data', (done) => {
-        Product.find({}, (err, resp) => {
+        Product.find({}, (err, products) => {
             if(err){
                 done(err);
+            }
+            if(!products.length){
+                done(new Error('no data!'));
+            }
+            done();
+        })
+    })
+    it('should return products with a productCode', (done) => {
+        Product.find({}, (err, products) => {
+            if(err){
+                done(err);
+            }
+            if(!products.every((product:any) => product.productCode)){
+                done(new Error('some products don\'t have a productCode'));
             }
             done();
         })
     })
 
-    afterEach(() => {
+    //after all
+    after(() => {
         mongoose.disconnect();
     })
 })

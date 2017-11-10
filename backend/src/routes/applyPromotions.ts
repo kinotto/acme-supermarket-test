@@ -32,7 +32,7 @@ export const calculateTotal = (basket: any) => {
                 && item.promotion.rule.newPrice 
                 ? item.promotion.rule.newPrice 
                 : item.price;
-            return +(sum + (priceToApply / 100) * item.quantity).toFixed(2);
+            return +(sum + priceToApply * item.quantity);
         }, 0
      );
 }

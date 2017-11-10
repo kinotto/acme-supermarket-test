@@ -51,7 +51,7 @@ class BasketTile extends Component {
           <div>
             {
               item.promotion && item.promotion.rule && item.promotion.rule.free
-                ? item.promotion.rule.free + ' free'
+                ? (item.promotion.rule.free * item.quantity) + ' free'
                 : ''
             }
           </div>

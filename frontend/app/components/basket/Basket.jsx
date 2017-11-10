@@ -33,7 +33,7 @@ class Basket extends Component {
 
         <hr/>
         <h3>
-          Total: {this.props.basket.get('total')} £
+          Total: {(this.props.basket.get('total') / 100).toFixed(2)} £
         </h3>
       </div>
 
