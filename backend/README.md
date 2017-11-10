@@ -14,6 +14,8 @@ the backend interacts with a persistence layer (mongoDB) on heroku cloud.
 there's a first phase that populate the remote db with the products on our supermarket (in the example we have only tree products), available for simplicity in the file products.json.
 Once the db is populated the server is ready to handle the requests coming come from the client.
 
+Mongoose library is used to define both the schema of Product and Basket and for general CRUD operations.
+
 ## routes
 there are several routes to handle both the basket and the products.
 - fetch of the basket (basket is persistent)
