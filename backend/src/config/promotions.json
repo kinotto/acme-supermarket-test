@@ -1,0 +1,18 @@
+[
+    {
+        "productCode": "FR1",
+        "description": "buy one get one free",
+        "rule":{
+            "quantity": 1,
+            "free": 1
+        }
+    },
+    {
+        "productCode": "SR1",
+        "description": "bulk purchase, discount price",
+        "rule":{
+            "quantity": 3,
+            "newPrice": 450
+        }
+    }
+]

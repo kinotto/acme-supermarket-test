@@ -5,7 +5,9 @@ import {
   FETCH_BASKET_REQUEST,
   ADD_TO_BASKET_REQUEST,
   REMOVE_FROM_BASKET_REQUEST,
-  FetchBasketResponse
+  FETCH_BASKET_TOTAL_REQUEST,
+  FetchBasketResponse,
+  FetchBasketTotalResponse
 } from '../actions';
 
 
@@ -16,6 +18,17 @@ const fetchBasket = action$ => {
       return ajax({'url': API.BASKET})
         .map(resp => {
           return FetchBasketResponse(resp.response);
+        });
+    });
+};
+
+const fetchBasketTotal = action$ => {
+  return action$
+    .ofType(FETCH_BASKET_TOTAL_REQUEST)
+    .switchMap(() => {
+      return ajax({'url': API.BASKET_TOTAL})
+        .map(resp => {
+          return FetchBasketTotalResponse(resp.response);
         });
     });
 };
@@ -52,6 +65,7 @@ const removeFromBasket = action$ => {
 
 export const basketEpic = [
   fetchBasket,
+  fetchBasketTotal,
   addToBasket,
   removeFromBasket
 ];

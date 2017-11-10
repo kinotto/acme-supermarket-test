@@ -17,7 +17,18 @@
     }
   }
   &__price{
+    position: relative;
     flex: 1;
+    &--barred:before{
+      position: absolute;
+      content: "";
+      left: 0%;
+      top: 20%;
+      right: 30%;
+      border-top: 1px solid;
+      border-color: inherit;
+      transform:rotate(-5deg);
+    }
   }
   &__quantity{
     flex: 1;

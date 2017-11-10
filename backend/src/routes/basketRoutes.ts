@@ -1,7 +1,7 @@
 import * as express from 'express';
 import {Product} from '../storage/model/product';
 import {Basket} from '../storage/model/basket';
-import {applyRules} from './applyRules';
+import {applyPromotions, calculateTotal} from './applyPromotions';
 import * as mongoose from 'mongoose';
 const router = express.Router();
 
@@ -40,7 +40,7 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
                 }
                 fetchAllBasket()
                 .then(items => {
-                    res.status(200).json(applyRules(items));
+                    res.status(200).json(applyPromotions(items));
                 })
                 .catch((err: mongoose.Error) => {
                     next(err);
@@ -57,7 +57,7 @@ router.post('/', (req: express.Request, res: express.Response, next: express.Nex
 router.get('/', (req: express.Request, res: express.Response, next: express.NextFunction) => {
     fetchAllBasket()
     .then(items => {
-        res.status(200).json(applyRules(items));
+        res.status(200).json(applyPromotions(items));
     })
     .catch((err: mongoose.Error) => {
         next(err);
@@ -82,7 +82,7 @@ router.delete('/', (req: express.Request, res: express.Response, next: express.N
         return fetchAllBasket();
     })
     .then(items => {
-        res.status(200).json(applyRules(items));
+        res.status(200).json(applyPromotions(items));
     })
     .catch((err: mongoose.Error) => {
         next(err);
@@ -116,5 +116,17 @@ const fetchAllBasket = () => {
         
 }
 
+/**
+ * return the total + any promotion
+ */
+router.get('/total', (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    fetchAllBasket()
+    .then((basket: any) => {
+        res.status(200).json({total: calculateTotal(basket)});
+    })
+    .catch(err => {
+        next(err);
+    })
+})
 
 module.exports = router;

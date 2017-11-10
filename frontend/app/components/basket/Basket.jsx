@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
   FetchBasketRequest,
+  FetchBasketTotalRequest,
   RemoveFromBasketRequest
 } from '../../actions';
 
@@ -12,12 +13,17 @@ class Basket extends Component {
   componentWillMount() {
     this.props.FetchBasketRequest();
   }
+  componentWillReceiveProps(newProps) {
+    if (newProps.basket.get('items') !== this.props.basket.get('items')) {
+      this.props.FetchBasketTotalRequest();
+    }
+  }
   render() {
     return (
       <div className="basket">
         <h2>Basket</h2>
         {
-          this.props.items.map(item =>
+          this.props.basket.get('items').map(item =>
             <BasketTile
               key={item.productCode}
               item={item}
@@ -25,15 +31,10 @@ class Basket extends Component {
             />
           )
         }
-        <Promotions items={this.props.items} />
+        <Promotions items={this.props.basket.get('items')} />
         <hr/>
         <h3>
-          Total:
-          { ' ' +
-            this.props.items.reduce(
-              (sum, item) => +(sum + (item.price / 100) * item.quantity).toFixed(2), 0
-            )
-          } £
+          Total: {this.props.basket.get('total')} £
         </h3>
       </div>
 
@@ -43,16 +44,18 @@ class Basket extends Component {
 
 const mapStateToProps = state => {
   return {
-    'items': state.get('basket')
+    'basket': state.get('basket')
   };
 };
 Basket.propTypes = {
-  'items': PropTypes.object,
+  'basket': PropTypes.object,
   'FetchBasketRequest': PropTypes.func,
+  'FetchBasketTotalRequest': PropTypes.func,
   'RemoveFromBasketRequest': PropTypes.func
 };
 
 export default connect(mapStateToProps, {
   FetchBasketRequest,
+  FetchBasketTotalRequest,
   RemoveFromBasketRequest
 })(Basket);

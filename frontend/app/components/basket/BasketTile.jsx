@@ -31,10 +31,27 @@ class BasketTile extends Component {
           }
         </div>
         <div className="basketTile__price">
-          {(item.price / 100).toFixed(2) } £
+          <div className={item.promotion && item.promotion.rule
+              && item.promotion.rule.newPrice ? 'basketTile__price--barred' : ''}>
+            {(item.price / 100).toFixed(2) } £
+          </div>
+          <div>
+            {
+              item.promotion && item.promotion.rule && item.promotion.rule.newPrice
+                ? (item.promotion.rule.newPrice / 100).toFixed(2) + ' £'
+                : ''
+            }
+          </div>
         </div>
         <div className="basketTile__quantity">
           {item.quantity}
+          <div>
+            {
+              item.promotion && item.promotion.rule && item.promotion.rule.free
+                ? item.promotion.rule.free + ' free'
+                : ''
+            }
+          </div>
         </div>
         <div
           className="basketTile__remove"
