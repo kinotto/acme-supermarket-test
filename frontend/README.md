@@ -5,7 +5,7 @@ The complete stack of the exercise is React-NodeJS-MongoDB.
 I used transpilation both on the client and on the server (jsx and typescript)
 with the help of babel and webpack.
 
-The integration with the backend rely on rxjs with redux-observable to handle the ajax calls, and the styling part is made using SASS preprocessor following BEM pattern.
+The integration with the backend rely on rxjs with redux-observable to handle the ajax calls, and the styling part is made using SASS preprocessor following BEM naming convention.
 
 ## install
 
