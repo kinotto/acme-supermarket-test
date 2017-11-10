@@ -5,11 +5,13 @@ I used transpilation both on the client and on the server (jsx and typescript)
 with the help of babel and webpack.
 
 ## install
-first download the dependencies
-npm install or yarn install
 
-to run the project:
-npm run start
+client and server are two differet projects, in order to the let them work properly  <a href="https://github.com/kinotto/acme-supermarket-test/tree/master/backend">start the server</a>, then start the client:
 
-to run the test:
-npm run test
+- npm install or yarn install
+
+- npm run start
+
+- npm run test (to run the test)
+
+- open the browser at localhost:3003
