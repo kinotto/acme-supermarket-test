@@ -103,11 +103,11 @@ const fetchAllBasket = () => {
             }})
         })
         .then((items: any) => {
-            let itemsAndQuantity = items.map((item: any) => {
+            let itemsFull = items.map((item: any) => {
                 let bItem = basketItems.find((bItem:any) => bItem.productCode === item.productCode);
                 return {...item.toObject(), quantity: bItem.quantity || 1};
             })
-            resolve(itemsAndQuantity);
+            resolve(itemsFull);
         })
         .catch((err: mongoose.Error) => {
             reject(err);
@@ -117,11 +117,12 @@ const fetchAllBasket = () => {
 }
 
 /**
- * return the total + any promotion
+ * return the total
  */
 router.get('/total', (req: express.Request, res: express.Response, next: express.NextFunction) => {
     fetchAllBasket()
     .then((basket: any) => {
+        basket = applyPromotions(basket);
         res.status(200).json({total: calculateTotal(basket)});
     })
     .catch(err => {

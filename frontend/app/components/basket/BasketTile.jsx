@@ -22,6 +22,9 @@ class BasketTile extends Component {
         ref={el => {
           this.parent = el;
         }}>
+        <div className="basketTile__img">
+          <img src={item.img} />
+        </div>
         <div className="basketTile__name">
           {item.name}
           {

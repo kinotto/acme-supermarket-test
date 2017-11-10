@@ -13,7 +13,6 @@ describe('test on mock data', () => {
 
     it('should return some mock data', (done) => {
         Product.find({}, (err, resp) => {
-            console.log(resp.length && resp[0]);
             if(err){
                 done(err);
             }

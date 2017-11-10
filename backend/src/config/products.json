@@ -1,16 +1,19 @@
 [
     {
         "productCode": "FR1",
+        "img": "https://static.openfoodfacts.org/images/products/322/888/101/0971/front_fr.6.full.jpg",
         "name": "Fruit tea",
         "price": 311
     },
     {
         "productCode": "SR1",
+        "img": "https://dtgxwmigmg3gc.cloudfront.net/files/56fc78f252ba0b45e70396e9-icon-256x256.png",
         "name": "Strawberries",
         "price": 500
     },
     {
         "productCode": "CF1",
+        "img": "http://www.odditysoftware.com/_images/db_icons/starbucks_locations.png",
         "name": "Coffee",
         "price": 1123
     }

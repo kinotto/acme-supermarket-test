@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import BasketTile from './BasketTile';
-import Promotions from '../promotions/Promotions';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {
@@ -31,7 +30,7 @@ class Basket extends Component {
             />
           )
         }
-        <Promotions items={this.props.basket.get('items')} />
+
         <hr/>
         <h3>
           Total: {this.props.basket.get('total')} £

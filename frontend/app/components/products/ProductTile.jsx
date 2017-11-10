@@ -22,6 +22,9 @@ class ProductTile extends Component {
 
     return (
       <div className="productTile">
+        <div className="productTile__img">
+          <img src={product.img} />
+        </div>
         <div className="productTile__name">
           {product.name}
         </div>
