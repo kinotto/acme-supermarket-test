@@ -11,7 +11,7 @@ the backend interacts with a persistence layer (mongoDB) on heroku cloud.
 - npm run test (to run the test)
 
 ## storage
-there's an initial phase that populates the remote db with the products in the supermarket (in the example we have only tree products), available for simplicity in the file products.json.
+there's an initial phase that populates the remote db with the products in the supermarket (in the example we have only tree products), available for simplicity in the file config/products.json.
 Once the db is populated the server is ready to handle the requests coming come from the client.
 
 Mongoose library is used to define both the schema of Product and Basket and for general CRUD operations.
