@@ -9,7 +9,18 @@ import Adapter from 'enzyme-adapter-react-16';
 configure({ adapter: new Adapter() });
 import configureStore from 'redux-mock-store';
 import {Map, List} from 'immutable';
-
+import {
+  FETCH_PRODUCTS_REQUEST,
+  FETCH_BASKET_REQUEST,
+  FETCH_BASKET_TOTAL_REQUEST,
+  ADD_TO_BASKET_REQUEST,
+  REMOVE_FROM_BASKET_REQUEST,
+  FetchProductsRequest,
+  FetchBasketRequest,
+  AddToBasketRequest,
+  RemoveFromBasketRequest,
+  FetchBasketTotalRequest
+} from '../actions';
 
 describe('test main components', () => {
   let store;
@@ -33,4 +44,41 @@ describe('test main components', () => {
     console.log(basket.props.basket);
     expect(basket).toBeTruthy();
   });
+
+  it("should create a FETCH_PRODUCTS_REQUEST action", () => {
+    let action = {
+      type: FETCH_PRODUCTS_REQUEST
+    }
+    expect(FetchProductsRequest()).toEqual(action);
+  })
+
+  it("should create a FETCH_BASKET_REQUEST action", () => {
+    let action = {
+      type: FETCH_BASKET_REQUEST
+    }
+    expect(FetchBasketRequest()).toEqual(action);
+  })
+
+  it("should create a FETCH_BASKET_TOTAL_REQUEST action", () => {
+    let action = {
+      type: FETCH_BASKET_TOTAL_REQUEST
+    }
+    expect(FetchBasketTotalRequest()).toEqual(action);
+  })
+
+  it("should create an ADD_TO_BASKET_REQUEST action", () => {
+    let action = {
+      type: ADD_TO_BASKET_REQUEST
+    }
+    expect(AddToBasketRequest()).toEqual(action);
+  })
+
+  it("should create a REMOVE_FROM_BASKET_REQUEST action", () => {
+    let action = {
+      type: REMOVE_FROM_BASKET_REQUEST
+    }
+    expect(RemoveFromBasketRequest()).toEqual(action);
+  })
+
+
 });
