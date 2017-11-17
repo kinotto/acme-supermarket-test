@@ -25,4 +25,5 @@ there are several routes to handle both the basket and the products.
 - get the total of the basket (promotions included)
 
 
-
+## sources
+see the frontend implementation <a href="https://github.com/kinotto/acme-supermarket-test/tree/master/frontend">here</a>
