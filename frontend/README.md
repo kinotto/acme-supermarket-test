@@ -18,3 +18,6 @@ client and server are two differet projects, in order to the let them work prope
 - npm run test (to run the test)
 
 - open the browser at localhost:3003
+
+## sources
+see the backend implementation <a href="https://github.com/kinotto/acme-supermarket-test/tree/master/backend">here</a>
